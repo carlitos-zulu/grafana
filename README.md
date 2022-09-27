@@ -13,4 +13,4 @@ your-grafana-project-path > docker compose up -d
 ### Review the target status in Prometheus URL
 
 - Open [`http://localhost:9090/targets`](http://localhost:9090/targets)
-- Check that the host _`http://localhost:9090/metrics`_ has the state <span style="color: white; background-color: #28a745; padding: 2px 5px; border-radius: 5px;">UP</span>
+- Check that the host _`http://localhost:9090/metrics`_ has the state <img align="center" width="35" alt="image" src="https://user-images.githubusercontent.com/113373447/192590706-2ec095c0-1efd-4139-9b14-594551637ddf.png">
