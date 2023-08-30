@@ -26,8 +26,7 @@ jobs:
           date +%s > .github/workflows/bp.yml
           git add -A
           git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
-          git cherry-pick --skip
-        # git push --force origin backport/${{ steps.time.outputs.time }}_master-to-develop
+          git push --force origin backport/${{ steps.time.outputs.time }}_master-to-develop
 
       - name: Create Pull Request - Develop
         id: cpr
