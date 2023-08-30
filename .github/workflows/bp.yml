@@ -18,6 +18,9 @@ jobs:
           timeZone: UTC+8
           format: 'YYYY-MM-DD-HH-mm'
 
+      - name: Make changes to pull request
+        run: date +%s > .github/workflows/bp.yml
+
       - name: Create branch - Dev
         run: |
           git config user.name 'Zulu Admin'
