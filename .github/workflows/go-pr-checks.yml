@@ -18,7 +18,7 @@ jobs:
           timeZone: UTC+8
           format: 'YYYY-MM-DD-HH-mm'
 
-      - name: Create branch - Dev
+      - name: Create Pull Request - Develop
         run: |
           git config user.name 'Zulu Admin'
           git config user.email 'carlos@zuluapp.io'
@@ -27,19 +27,13 @@ jobs:
           gh pr create -B develop --title "Backport ${{ steps.time.outputs.time }} master -> develop" --body ""
         env:
           GH_TOKEN: ${{ github.token }}
-      #     git add -A
-      #     git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
 
-      # - name: Create Pull Request - Develop
-      #   id: cpr
-      #   uses: peter-evans/create-pull-request@v5
-      #   with:
-      #     base: develop
-      #     commit-message: Backport${{ steps.time.outputs.time }}
-      #     committer: GitHub <noreply@github.com>
-      #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-      #     signoff: false
-      #     branch: backport/${{ steps.time.outputs.time }}_master-to-develop
-      #     delete-branch: false
-      #     title: 'Backport ${{ steps.time.outputs.time }} master -> develop'
-      #     draft: true
+      - name: Create Pull Request - Staging
+        run: |
+          git config user.name 'Zulu Admin'
+          git config user.email 'carlos@zuluapp.io'
+          git checkout -b backport/${{ steps.time.outputs.time }}_master-to-staging
+          git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-staging
+          gh pr create -B staging --title "Backport ${{ steps.time.outputs.time }} master -> staging" --body ""
+        env:
+          GH_TOKEN: ${{ github.token }}
