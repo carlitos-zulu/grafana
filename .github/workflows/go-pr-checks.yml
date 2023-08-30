@@ -18,6 +18,10 @@ jobs:
           timeZone: UTC+8
           format: 'YYYY-MM-DD-HH-mm'
 
+      - name: Create commit - Dev
+        run: |
+          git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
+
       - name: Create Pull Request - Develop
         id: cpr
         uses: peter-evans/create-pull-request@v5
