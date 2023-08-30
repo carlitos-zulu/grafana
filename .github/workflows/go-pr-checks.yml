@@ -25,7 +25,7 @@ jobs:
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
           git add -A
           git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
-          git push -f origin backport/${{ steps.time.outputs.time }}_master-to-develop
+          git push -force origin backport/${{ steps.time.outputs.time }}_master-to-develop
 
       - name: Create Pull Request - Develop
         id: cpr
