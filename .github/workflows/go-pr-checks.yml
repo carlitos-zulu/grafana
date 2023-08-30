@@ -24,19 +24,20 @@ jobs:
           git config user.email 'carlos@zuluapp.io'
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
           git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-develop
+          gh pr create -B develop -t "Backport ${{ steps.time.outputs.time }} master -> develop"
       #     git add -A
       #     git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
 
-      - name: Create Pull Request - Develop
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          base: develop
-          commit-message: Backport${{ steps.time.outputs.time }}
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          branch: backport/${{ steps.time.outputs.time }}_master-to-develop
-          delete-branch: false
-          title: 'Backport ${{ steps.time.outputs.time }} master -> develop'
-          draft: true
+      # - name: Create Pull Request - Develop
+      #   id: cpr
+      #   uses: peter-evans/create-pull-request@v5
+      #   with:
+      #     base: develop
+      #     commit-message: Backport${{ steps.time.outputs.time }}
+      #     committer: GitHub <noreply@github.com>
+      #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+      #     signoff: false
+      #     branch: backport/${{ steps.time.outputs.time }}_master-to-develop
+      #     delete-branch: false
+      #     title: 'Backport ${{ steps.time.outputs.time }} master -> develop'
+      #     draft: true
