@@ -23,7 +23,7 @@ jobs:
           git config user.name 'Zulu Admin'
           git config user.email 'carlos@zuluapp.io'
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
-          git push --force origin backport/${{ steps.time.outputs.time }}_master-to-develop
+          git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-develop
       #     git add -A
       #     git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
 
