@@ -20,6 +20,8 @@ jobs:
 
       - name: Create branch - Dev
         run: |
+          git config user.name 'Zulu Admin'
+          git config user.email 'carlos@zuluapp.io'
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
           git add -A
           git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
