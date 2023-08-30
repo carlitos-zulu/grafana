@@ -18,7 +18,7 @@ jobs:
           timeZone: UTC+8
           format: 'YYYY-MM-DD-HH-mm'
 
-      - name: Create commit - Dev
+      - name: Create branch - Dev
         run: |
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
 
@@ -26,6 +26,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
+          base: master
           commit-message: Backport${{ steps.time.outputs.time }}
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
