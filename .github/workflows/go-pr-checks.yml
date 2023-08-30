@@ -1,0 +1,39 @@
+name: Backport
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@master
+        with:
+          timeZone: UTC-5
+          format: 'YYYY-MM-DD-HH-mm'
+
+      - name: Create Pull Request - Develop
+        run: |
+          git config user.name 'Zulu Admin'
+          git config user.email 'carlos@zuluapp.io'
+          git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
+          git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-develop
+          gh pr create -B develop --title "Backport ${{ steps.time.outputs.time }} master -> develop" --body "" --draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Create Pull Request - Staging
+        run: |
+          git config user.name 'Zulu Admin'
+          git config user.email 'carlos@zuluapp.io'
+          git checkout -b backport/${{ steps.time.outputs.time }}_master-to-staging
+          git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-staging
+          gh pr create -B staging --title "Backport ${{ steps.time.outputs.time }} master -> staging" --body "" --draft
+        env:
+          GH_TOKEN: ${{ github.token }}
