@@ -21,7 +21,7 @@ jobs:
       - name: Create branch - Dev
         run: |
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
-          git add .
+          git add -A
           git commit -m Backport ${{ steps.time.outputs.time }} master -> develop
           git push origin backport/${{ steps.time.outputs.time }}_master-to-develop
 
