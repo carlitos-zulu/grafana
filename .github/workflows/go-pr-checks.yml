@@ -25,6 +25,8 @@ jobs:
           git checkout -b backport/${{ steps.time.outputs.time }}_master-to-develop
           git push --set-upstream origin backport/${{ steps.time.outputs.time }}_master-to-develop
           gh pr create -B develop -t "Backport ${{ steps.time.outputs.time }} master -> develop"
+        env:
+          GH_TOKEN: ${{ github.token }}
       #     git add -A
       #     git commit -m "Backport ${{ steps.time.outputs.time }} master -> develop"
 
